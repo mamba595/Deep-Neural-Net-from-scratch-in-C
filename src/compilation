@@ -1,0 +1,10 @@
+gcc program.c -o program -lgsl -lgslcblas -lm
+
+// GNU Scientific Library
+#include <gsl/gsl_vector.h>
+#include <gsl/gsl_matrix.h>
+#include <gsl/gsl_blas.h>
+
+gcc program.c -o program -lopenblas -lm
+
+#include <cblas.h>
