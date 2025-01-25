@@ -25,8 +25,8 @@ int main() {
 	for ( int i = 0; i < 3; i++ ) {
 		// matrix-array multiplication using CBLAS
 		cblas_sgemv(
-			CblasRowMajor,
-			CblasNoTrans,
+			CblasRowMajor,	// row-major layout
+			CblasNoTrans,	// No transpose
 			3,		// rows in weights
 			4,		// columns in weights
 			1.0,		// scaling factor for weights
@@ -38,10 +38,11 @@ int main() {
 			output,		// pointer to outputs
 			1		// step for outputs
 		);
-			
+		
+		// biases added
 		output[i] += biases[i];
 		
-		// outputs
+		// outputs shown
 		printf("Neuron number %d: %.3f\n",i+1,output[i]);
 	}
 }

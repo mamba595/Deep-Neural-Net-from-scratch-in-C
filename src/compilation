@@ -7,4 +7,5 @@ gcc program.c -o program -lgsl -lgslcblas -lm
 
 gcc program.c -o program -lopenblas -lm
 
+// C interface for Basic Linear Algebra Subprograms
 #include <cblas.h>

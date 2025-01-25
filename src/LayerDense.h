@@ -1,0 +1,3 @@
+typedef struct LayerDense LayerDense;
+
+
