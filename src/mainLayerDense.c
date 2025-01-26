@@ -45,6 +45,12 @@ int main() {
 	
 	printf("\n\n");
 	
+	// output before activationSoftmax
+	getOutput(layer2,3);
+	
+	// activation softmax function
+	activation_Softmax(layer2,3);
+	
 	// outputs of the second layer
 	getOutput(layer2,3);
 	

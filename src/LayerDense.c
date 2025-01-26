@@ -69,6 +69,26 @@ void activation_ReLU( LayerDense * layer, int n_batches ) {
 		if ( layer->output[i] < 0 ) layer->output[i] = 0;
 }
 
+void activation_Softmax( LayerDense * layer, int n_batches ) {
+	float e = 2.71828182845904,
+	      max = layer->output[0],
+	      sum = 0;
+	
+	for ( int i = 0; i < n_batches * layer->n_neurons; i++ ) {
+		layer->output[i] = pow(e, layer->output[i]);
+		if ( layer->output[i] > max )
+			max = layer->output[i];
+	}
+	
+	for ( int i = 0; i < n_batches * layer->n_neurons; i++ ) {
+		layer->output[i] = layer->output[i] - max;
+		sum += layer->output[i];
+	}
+	
+	for ( int i = 0; i < n_batches * layer->n_neurons; i++ )
+		layer->output[i] = layer->output[i] / sum;
+}
+
 void getOutput( LayerDense * layer, int n_batches ) {
 	printf("\n\n");
 

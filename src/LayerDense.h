@@ -7,6 +7,9 @@
 // C interface for Basic Linear Algebra Subprograms
 #include <cblas.h>
 
+// basic math library
+#include <math.h>
+
 #ifndef LAYER_DENSE
 #define LAYER_DENSE
 
@@ -25,6 +28,8 @@ LayerDense * newLayerDense(int n_inputs, int n_neurons);
 void forward( LayerDense * layer, float * inputs, int n_batches );
 
 void activation_ReLU( LayerDense * layer, int n_batches );
+
+void activation_Softmax( LayerDense * layer, int n_batches );
 
 void getOutput( LayerDense * layer, int n_batches );
 
