@@ -12,9 +12,14 @@ int main() {
 	LayerDense * layer = newLayerDense(4,3);
 
 	// inputs
-	float inputs[] = {1.0, 2.0, 3.0, 2.5,	// first batch
+	/*float inputs[] = {1.0, 2.0, 3.0, 2.5,	// first batch
 			  2.0, 5.0, -1.0,2.0,	// second batch
 			  -1.5, 2.7, 3.3, -0.8};// third batch
+			  
+	*/
+	
+	// aritificial data created
+	float * inputs = create_data(4,3);
 	    
 	forward(layer,inputs,3);
 	
@@ -23,13 +28,14 @@ int main() {
 	
 	output = (layer->output);
 	
-	// outputs of the first layer shown
-	for ( int i = 0; i < 3; i++ ) {
-		printf("Batch number %d:\n",i+1);
-		
-		for ( int j = 0; j < layer->n_neurons; j++ )
-			printf("Neuron number %d: %.3f\n",j+1,layer->output[j + (i*layer->n_neurons)]);
-	}
+	// outputs of the first layer before activation reLU shown
+	getOutput(layer,3);
+	
+	// activation reLU function
+	activation_ReLU(layer,3);
+	
+	// output after activation function
+	getOutput(layer,3);
 	
 	/* Second layer */
 	LayerDense * layer2 = newLayerDense(3,2);
@@ -40,10 +46,9 @@ int main() {
 	printf("\n\n");
 	
 	// outputs of the second layer
-	for ( int i = 0; i < 3; i++ ) {
-		printf("Batch number %d:\n",i+1);
-		
-		for ( int j = 0; j < layer2->n_neurons; j++ )
-			printf("Neuron number %d: %.3f\n",j+1,layer2->output[j + (i*layer2->n_neurons)]);
-	}
+	getOutput(layer2,3);
+	
+	// free dynamic memory
+	deleteLayer(layer);
+	deleteLayer(layer2);
 }

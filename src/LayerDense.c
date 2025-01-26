@@ -14,17 +14,17 @@ LayerDense * newLayerDense(int n_inputs, int n_neurons) {
 	// malloc for weights
 	layer->weights = (float *)malloc(n_inputs * n_neurons * sizeof(float));
 	
-	// weights initialized randomly to values between 0.0 and 1.0
+	// weights initialized randomly to values between -1.0 and 1.0
 	for ( int i = 0; i < n_inputs * n_neurons; i++ ) {
-		layer->weights[i] = (float)rand() / RAND_MAX;
+		layer->weights[i] = (-1.0) + (((float)rand() / RAND_MAX) * 2);
 	}
 	
 	// malloc for biases
 	layer->biases = (float *)malloc(n_neurons * sizeof(float));
 	
-	//  biases initiliazed to random values between 0.0 and 1.0
+	//  biases initiliazed to random values between -1.0 and 1.0
 	for ( int i = 0; i < n_neurons; i++)
-		layer->biases[i] = (float)rand() / RAND_MAX;
+		layer->biases[i] = (-1.0) + (((float)rand() / RAND_MAX) * 2);
 		
 	return layer;
 }
@@ -54,6 +54,50 @@ void forward( LayerDense * layer, float * inputs, int n_batches ) {
 	// low-level efficient loop for outputs calculation
 	for ( int i = 0; i < n_batches; i++ ) {
 		// biases added
-		cblas_saxpy(layer->n_neurons,1.0,layer->biases,1,layer->output+(i*layer->n_neurons),1);
+		cblas_saxpy(layer->n_neurons,
+			    1.0,
+			    layer->biases,
+			    1,
+			    layer->output+(i*layer->n_neurons),
+			    1
+		);
 	}
+}
+
+void activation_ReLU( LayerDense * layer, int n_batches ) {
+	for ( int i = 0; i < n_batches * layer->n_neurons; i++ )
+		if ( layer->output[i] < 0 ) layer->output[i] = 0;
+}
+
+void getOutput( LayerDense * layer, int n_batches ) {
+	printf("\n\n");
+
+	for ( int i = 0; i < n_batches; i++ ) {
+		printf("\nBatch number %d:\n",i+1);
+		
+		for ( int j = 0; j < layer->n_neurons; j++ )
+			printf("Neuron number %d: %.3f\n",j+1,layer->output[j + (i*layer->n_neurons)]);
+	}
+}
+
+float * create_data( int n_inputs, int n_batches ) {
+	// malloc for inputs
+	float * inputs = malloc( n_inputs * n_batches * sizeof(float));
+	
+	// seed for the random number generator
+	srand(time(NULL));
+	
+	// inputs initialized to random values between -1.0 and 1.0
+	for ( int i = 0; i < n_inputs * n_batches; i++ ) {
+		inputs[i] = (-1.0) + (((float)rand() / RAND_MAX) * 2);
+	}
+
+	return inputs;
+}
+
+void deleteLayer(LayerDense * layer) {
+	free(layer->weights);
+	free(layer->biases);
+	free(layer->output);
+	free(layer);
 }

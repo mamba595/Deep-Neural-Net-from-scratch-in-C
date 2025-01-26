@@ -24,4 +24,12 @@ LayerDense * newLayerDense(int n_inputs, int n_neurons);
 
 void forward( LayerDense * layer, float * inputs, int n_batches );
 
+void activation_ReLU( LayerDense * layer, int n_batches );
+
+void getOutput( LayerDense * layer, int n_batches );
+
+float * create_data( int n_inputs, int n_batches );
+
+void deleteLayer(LayerDense * layer);
+
 #endif
