@@ -130,8 +130,15 @@ int * create_classification_target( int n_neurons, int n_batches ) {
 float calculate_loss( LayerDense * layer, int * targets, int n_batches ) {
 	float loss = 0;
 	
-	for ( int i = 0; i < n_batches; i++ )
-		loss += - ( log(layer->output[i*layer->n_neurons + targets[i]]) );
+	for ( int i = 0; i < n_batches; i++ ) {
+		float val = layer->output[i*layer->n_neurons + targets[i]];
+		
+		// if val == 0, log(0) will produce inf
+		if ( val < 0.00 )
+			val = val - 1e7; 
+		
+		loss += - (log(val));
+	}
 		
 	return loss / n_batches;
 }
