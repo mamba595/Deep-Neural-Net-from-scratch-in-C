@@ -35,6 +35,10 @@ void getOutput( LayerDense * layer, int n_batches );
 
 float * create_data( int n_inputs, int n_batches );
 
+int * create_classification_target( int n_neurons, int n_batches );
+
+float calculate_loss( LayerDense * layer, int * targets, int n_batches );
+
 void deleteLayer(LayerDense * layer);
 
 #endif

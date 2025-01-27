@@ -43,6 +43,9 @@ int main() {
 	// takes output from last layer
 	forward(layer2,layer->output,3);
 	
+	// this layer is not used anymore
+	deleteLayer(layer);
+	
 	printf("\n\n");
 	
 	// output before activationSoftmax
@@ -54,7 +57,12 @@ int main() {
 	// outputs of the second layer
 	getOutput(layer2,3);
 	
+	// loss function
+	printf("\n\nLoss function: \n");
+	int * target = create_classification_target(layer2->n_neurons,3);
+	printf("Loss: %.3f\n\n", calculate_loss(layer2,target,3));
+	
 	// free dynamic memory
-	deleteLayer(layer);
 	deleteLayer(layer2);
+	free(target);
 }

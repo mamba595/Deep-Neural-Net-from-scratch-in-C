@@ -115,6 +115,27 @@ float * create_data( int n_inputs, int n_batches ) {
 	return inputs;
 }
 
+int * create_classification_target( int n_neurons, int n_batches ) {
+	int * targets = (int *)malloc(n_batches * sizeof(int));
+	
+	// seed for the random number generator
+	srand(time(NULL));
+	
+	for ( int i = 0; i < n_batches; i++ )
+		targets[i] = rand() % n_neurons;
+		
+	return targets;
+}
+
+float calculate_loss( LayerDense * layer, int * targets, int n_batches ) {
+	float loss = 0;
+	
+	for ( int i = 0; i < n_batches; i++ )
+		loss += - ( log(layer->output[i*layer->n_neurons + targets[i]]) );
+		
+	return loss / n_batches;
+}
+
 void deleteLayer(LayerDense * layer) {
 	free(layer->weights);
 	free(layer->biases);
