@@ -127,6 +127,21 @@ int * create_classification_target( int n_neurons, int n_batches ) {
 	return targets;
 }
 
+int * function_to_aproximate( float * inputs, int n_inputs, int n_batches ) {
+	int * targets = (int *)malloc(n_batches * sizeof(int));
+	
+	for ( int i = 0; i < n_batches; i++ ) {
+		float val = (inputs[0] + inputs[1]) + ( inputs[2] / (inputs[3] + 1e-8));
+		
+		if ( val > 0.5 )
+			targets[i] = 0;
+		else
+			targets[i] = 1;
+	}
+	
+	return targets;
+}
+
 float calculate_loss( LayerDense * layer, int * targets, int n_batches ) {
 	float loss = 0;
 	
