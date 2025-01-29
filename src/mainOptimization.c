@@ -17,7 +17,7 @@ int main() {
 			output layer -> 2 neurons
 	*/
 	
-	LayerDense * input_layer = newLayerDense(4, 3),
+	LayerDense * input_layer = newLayerDense(4,3),
 		   * hidden_layer = newLayerDense(3,6),
 		   * output_layer = newLayerDense(6,2);
 		   
@@ -60,9 +60,11 @@ int main() {
 		// calculates targets
 		int * targets = function_to_aproximate(inputs, 4, 3);
 		
-		// feeds the input to the neural net
+		// training the neural net
 		forward(input_layer, inputs, 3);
+		activation_ReLU( input_layer, 3 );
 		forward(hidden_layer, input_layer->output, 3);
+		activation_Softmax( hidden_layer, 3 );
 		forward(output_layer, hidden_layer->output, 3);
 		
 		free(inputs);
@@ -89,7 +91,7 @@ int main() {
 			//printf("Epoch: %d/%d  Loss: %.3f\n",i,1000,loss);
 		} else {
 			// returns to the best weights and biases
-			copy(input_layer->weights, input_layer->weights, 
+			copy(best_weights_input, input_layer->weights, 
 				input_layer->n_inputs, input_layer->n_neurons);
 			copy(best_weights_hidden, hidden_layer->weights, 
 				hidden_layer->n_inputs, hidden_layer->n_neurons);
