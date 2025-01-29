@@ -47,6 +47,16 @@ void activation_ReLU( LayerDense * layer, int n_batches );
 void activation_Softmax( LayerDense * layer, int n_batches );
 
 
+// copy function: copies a to b
+
+void copy(float * a, float * b, int rows, int cols);
+
+
+// add function: adds x to each value of M
+
+void add(float * M, float b, int rows, int cols);
+
+
 // C equivalent of overloading C++ << operator
 
 void getOutput( LayerDense * layer, int n_batches );

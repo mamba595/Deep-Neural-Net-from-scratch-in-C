@@ -100,6 +100,16 @@ void getOutput( LayerDense * layer, int n_batches ) {
 	}
 }
 
+void copy(float * a, float * b, int rows, int cols) {
+	for ( int i = 0; i < rows * cols; i++ )
+		b[i] = a[i];
+}
+
+void add(float * M, float b, int rows, int cols) {
+	for ( int i = 0; i < rows * cols; i++ )
+		M[i] += b;
+}
+
 float * create_data( int n_inputs, int n_batches ) {
 	// malloc for inputs
 	float * inputs = malloc( n_inputs * n_batches * sizeof(float));
@@ -131,7 +141,8 @@ int * function_to_aproximate( float * inputs, int n_inputs, int n_batches ) {
 	int * targets = (int *)malloc(n_batches * sizeof(int));
 	
 	for ( int i = 0; i < n_batches; i++ ) {
-		float val = (inputs[0] + inputs[1]) + ( inputs[2] / (inputs[3] + 1e-8));
+		float val = (inputs[i*n_inputs+0] + inputs[i*n_inputs+1]) + 
+				( inputs[i*n_inputs+2] / (inputs[i*n_inputs+3] + 1e-7));
 		
 		if ( val > 0.5 )
 			targets[i] = 0;
@@ -149,7 +160,7 @@ float calculate_loss( LayerDense * layer, int * targets, int n_batches ) {
 		float val = layer->output[i*layer->n_neurons + targets[i]];
 		
 		// if val == 0, log(0) will produce inf
-		if ( val < 0.00 )
+		if ( val <= 0.00 )
 			val = val - 1e7; 
 		
 		loss += - (log(val));
