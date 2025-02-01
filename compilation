@@ -1,4 +1,4 @@
-gcc program.c -o program -lgsl -lgslcblas -lm
+gcc src/program.c -o obj/program -lgsl -lgslcblas -lm
 
 // GNU Scientific Library
 #include <gsl/gsl_vector.h>
@@ -9,3 +9,6 @@ gcc program.c -o program -lopenblas -lm
 
 // C interface for Basic Linear Algebra Subprograms
 #include <cblas.h>
+
+// compilation
+gcc src/mainOptimization.c include/LayerDense.h -o obj/mainOptimization -lopenblas -lm
