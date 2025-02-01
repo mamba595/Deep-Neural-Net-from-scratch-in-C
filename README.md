@@ -2,7 +2,6 @@
 Building a Deep Neural Network from scratch in C, only using high performance math libraries, such as CBLAS, math.h and time.h.
 
 The repository contains the following:  
-
 	- LayerDense: a library that tries to replicate the most basic aspects of Tensorflow, with LayerDense as an object to work with.
  		+ Each LayerDense object contains its own set of weights, biases and outputs, giving total transparency and control to the user about the attributes of the layer.
    		+ A constructor is provided, called newLayerDense, which returns a pointer to a new LayerDense object.
