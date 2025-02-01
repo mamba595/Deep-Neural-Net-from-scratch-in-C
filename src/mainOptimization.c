@@ -35,23 +35,28 @@ int main() {
 	copy(hidden_layer->biases, best_biases_hidden, hidden_layer->n_neurons, 1);
 	copy(output_layer->biases, best_biases_output, output_layer->n_neurons, 1);
 		
-	float lowest_loss = 1e7;
+	float lowest_loss = 1e7,
+	      base_step = 0.1,
+	      step_decay = 0.999;
 	
 	// optimization
 		   
 	for ( int i = 0; i < 1000; i++ ) {
+		// adjust step size
+		float step_size = base_step * powf(step_decay, i);
+		
 		// adjust weights and biases
-		add( input_layer->weights,  0.05 * ((-1.0) + (((float)rand() / RAND_MAX) * 2)), 
+		add( input_layer->weights,  step_size * ((-1.0) + (((float)rand() / RAND_MAX) * 2)), 
 			input_layer->n_inputs, input_layer->n_neurons);
-		add( hidden_layer->weights,  0.05 * ((-1.0) + (((float)rand() / RAND_MAX) * 2)), 
+		add( hidden_layer->weights,  step_size * ((-1.0) + (((float)rand() / RAND_MAX) * 2)), 
 			hidden_layer->n_inputs, hidden_layer->n_neurons);
-		add( output_layer->weights,  0.05 * ((-1.0) + (((float)rand() / RAND_MAX) * 2)), 
+		add( output_layer->weights,  step_size * ((-1.0) + (((float)rand() / RAND_MAX) * 2)), 
 			output_layer->n_inputs, output_layer->n_neurons);
-		add( input_layer->biases,  0.05 * ((-1.0) + (((float)rand() / RAND_MAX) * 2)), 
+		add( input_layer->biases,  step_size * ((-1.0) + (((float)rand() / RAND_MAX) * 2)), 
 			input_layer->n_neurons, 1);
-		add( hidden_layer->biases,  0.05 * ((-1.0) + (((float)rand() / RAND_MAX) * 2)), 
+		add( hidden_layer->biases,  step_size * ((-1.0) + (((float)rand() / RAND_MAX) * 2)), 
 			hidden_layer->n_neurons, 1);
-		add( output_layer->biases,  0.05 * ((-1.0) + (((float)rand() / RAND_MAX) * 2)), 
+		add( output_layer->biases,  step_size * ((-1.0) + (((float)rand() / RAND_MAX) * 2)), 
 			output_layer->n_neurons, 1);
 		
 		// creates new random data for 3 batches each
@@ -102,7 +107,7 @@ int main() {
 			copy(best_biases_output, output_layer->biases, output_layer->n_neurons, 1);
 		}
 		
-		printf("Epoch: %d/%d  Loss: %.3f\n",i+1,1000,loss);
+		printf("Epoch: %d/%d  Loss: %.3f\n",i,1000,loss);
 	}
 	
 	deleteLayer(input_layer);
