@@ -21,6 +21,9 @@ int main() {
 		   * hidden_layer = newLayerDense(3,6),
 		   * output_layer = newLayerDense(6,2);
 		   
+	// global seed set once
+	srand(time(NULL));
+		   
 	float * best_weights_input = malloc(input_layer->n_inputs * input_layer->n_neurons * sizeof(float)),
 	      * best_weights_hidden = malloc(hidden_layer->n_inputs * hidden_layer->n_neurons * sizeof(float)),
 	      * best_weights_output = malloc(output_layer->n_inputs * output_layer->n_neurons * sizeof(float)),
@@ -36,7 +39,7 @@ int main() {
 	copy(output_layer->biases, best_biases_output, output_layer->n_neurons, 1);
 		
 	float lowest_loss = 1e7,
-	      base_step = 0.1,
+	      base_step = 0.2,
 	      step_decay = 0.999;
 	
 	// optimization
@@ -80,7 +83,7 @@ int main() {
 		free(targets);
 		
 		// optimizes the neural net
-		if ( loss < lowest_loss ) {
+		if ( fabsf(loss) < fabsf(lowest_loss) ) {
 			copy(input_layer->weights, best_weights_input, 
 				input_layer->n_inputs, input_layer->n_neurons);
 			copy(hidden_layer->weights, best_weights_hidden, 
@@ -93,7 +96,7 @@ int main() {
 			
 			lowest_loss = loss;
 			
-			//printf("Epoch: %d/%d  Loss: %.3f\n",i,1000,loss);
+			printf("Epoch: %d/%d  Loss: %.3f\n",i,1000,loss);
 		} else {
 			// returns to the best weights and biases
 			copy(best_weights_input, input_layer->weights, 
@@ -106,8 +109,6 @@ int main() {
 			copy(best_biases_hidden, hidden_layer->biases, hidden_layer->n_neurons, 1);
 			copy(best_biases_output, output_layer->biases, output_layer->n_neurons, 1);
 		}
-		
-		printf("Epoch: %d/%d  Loss: %.3f\n",i,1000,loss);
 	}
 	
 	deleteLayer(input_layer);

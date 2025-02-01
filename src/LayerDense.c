@@ -119,9 +119,6 @@ float * create_data( int n_inputs, int n_batches ) {
 	// malloc for inputs
 	float * inputs = malloc( n_inputs * n_batches * sizeof(float));
 	
-	// seed for the random number generator
-	//srand(time(NULL));
-	
 	// inputs initialized to random values between 0.1 and 0.9
 	for ( int i = 0; i < n_inputs * n_batches; i++ ) {
 		inputs[i] = 0.1 + (((float)rand() / RAND_MAX) * 0.8);
@@ -132,9 +129,6 @@ float * create_data( int n_inputs, int n_batches ) {
 
 int * create_classification_target( int n_neurons, int n_batches ) {
 	int * targets = (int *)malloc(n_batches * sizeof(int));
-	
-	// seed for the random number generator
-	srand(time(NULL));
 	
 	for ( int i = 0; i < n_batches; i++ )
 		targets[i] = rand() % n_neurons;
@@ -160,15 +154,15 @@ int * function_to_aproximate( float * inputs, int n_inputs, int n_batches ) {
 
 float calculate_loss( LayerDense * layer, int * targets, int n_batches ) {
 	float loss = 0;
-	const float epsilon = 1e-7;
+	const float epsilon = 1e-6;
 	
 	for ( int i = 0; i < n_batches; i++ ) {
 		float val = layer->output[i*layer->n_neurons + targets[i]];
 		
 		// makes sure log(0) is not computed
-		val = fmaxf(epsilon, fminf(val,1.0f - epsilon));
+		val = fmaxf(val,epsilon);
 		
-		loss += -log(val);
+		loss += -(log(val));
 	}
 		
 	return loss / n_batches;
