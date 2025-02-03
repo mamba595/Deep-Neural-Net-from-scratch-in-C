@@ -1,7 +1,7 @@
 # Deep-Neural-Net-from-scratch-in-C
 Building a Deep Neural Network from scratch in C, only using high performance math libraries, such as CBLAS, math.h and time.h.
 
-The project has multiple source files since I have been following the [Sendtex "Neural Networks from Scratch" Series](https://www.youtube.com/watch?v=Wo5dMEP_BbI&list=PLQVvvaa0QuDcjD5BAw2DxE6OF2tius3V3).
+The project follows the [Sendtex "Neural Networks from Scratch" Series](https://www.youtube.com/watch?v=Wo5dMEP_BbI&list=PLQVvvaa0QuDcjD5BAw2DxE6OF2tius3V3).
 
 ## The repository contains the following:  
 - LayerDense: a library that tries to replicate the most basic aspects of Tensorflow, with LayerDense as an object to work with.
