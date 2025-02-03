@@ -5,7 +5,12 @@ The repository contains the following:
 - LayerDense: a library that tries to replicate the most basic aspects of Tensorflow, with LayerDense as an object to work with.
    * Each LayerDense object contains its own set of weights, biases and outputs, giving total transparency and control to the user about the attributes of the layer.  
    * A constructor is provided, called newLayerDense, which returns a pointer to a new LayerDense object.  
-   * A forward function that calculates the outputs of the neurons as weights * inputs + biases using CBLAS library sgemm function for the dot product.   
+   * A forward function that calculates the outputs of the neurons as weights * inputs + biases using CBLAS library sgemm function for the dot product.
+   * Activation functions: Reinforcement Linear Unit and Softmax have been implemented.
+   * A random input data generator: create_data produces new data as the user requests in the form of matrices whose values are stored linearly in float pointers.
+   * A loss function to serve as an accuracy metric for the deep neural network to adjust its weights and biases.
+   * An arbitrary function created only for the deep neural network to aim to approximate: (a + b) + ( c / (d + 1e-8)) > 0.5, only works for n_inputs = 4.
+   * Additional functions to make working with the LayerDense objects more efficient, such as copy, add and deleteLayer.
 
 The project has multiple source files since I have been following the [Sendtex "Neural Networks from Scratch" Series.](https://www.youtube.com/watch?v=Wo5dMEP_BbI&list=PLQVvvaa0QuDcjD5BAw2DxE6OF2tius3V3)
 
