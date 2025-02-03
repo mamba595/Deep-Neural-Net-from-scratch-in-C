@@ -17,7 +17,7 @@ Dependencies:
 To compile most of the programs in this repository, just use the following order, changing "program" with the name of the program you are trying to compile:
 gcc src/program.c -o obj/program -lopenblas -lm
 
-The source files belong to one of the 9 parts that compose the Sendtex Series:  
+The source files belong to one of the 9 parts that compose the Sendtex Series:
 - Part 1: firstNeuralNet.c  
 - Part 2: firstLayer.c  
 - Part 3: firstEfficientLayer.c and firstDotProduct.c  
