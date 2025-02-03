@@ -20,8 +20,8 @@ Dependencies:
 - CBLAS: C interface for Basic Linear Algebra Subprograms  
 
 To compile programs in this repository, use one of the following orders, making the appropiate changes:  
-`gcc src/program.c -o obj/program -lopenblas -lm`  
-`gcc src/program.c include/LayerDense.h -o obj/program -lopenblas -lm -I./include`
+`gcc src/program.c -o program -lopenblas -lm`  
+`gcc src/program.c include/LayerDense.h -o program -lopenblas -lm -I./include`
 
 
 ## Source files
