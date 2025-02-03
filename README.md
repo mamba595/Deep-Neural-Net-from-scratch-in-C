@@ -13,6 +13,9 @@ The project has multiple source files since I have been following the [Sendtex "
    * A loss function to serve as an accuracy metric for the deep neural network to adjust its weights and biases.
    * An arbitrary function created only for the deep neural network to aim to approximate: (a + b) + ( c / (d + 1e-8)) > 0.5, only works for n_inputs = 4.
    * Additional functions to make working with the LayerDense objects more efficient, such as copy, add and deleteLayer.
+- mainLayerDense: works exclusively with the LayerDense objects and its functions, feeding input into a deep neural network and shows the output in the terminal.
+- mainOptimization: trains a deep neural network with 3 layers and applies optimization in order to approximate an arbitrary function.
+- Source files with the basics of deep neural network, built at the beginning in order to gain a low-level knowledgeable understanding behind the layers from high-level deep learning Python libraries Tensorflow and Pytorch.
 
 ## Setup
 Tools used:  
