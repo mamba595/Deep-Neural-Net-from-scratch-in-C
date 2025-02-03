@@ -7,7 +7,7 @@ The repository contains the following:
    * A constructor is provided, called newLayerDense, which returns a pointer to a new LayerDense object.  
    * A forward function that calculates the outputs of the neurons as weights * inputs + biases using CBLAS library sgemm function for the dot product.   
 
-The project has multiple source files since I have been following the [Sendtex "Neural Networks from Scratch" Series](https://www.youtube.com/watch?v=Wo5dMEP_BbI&list=PLQVvvaa0QuDcjD5BAw2DxE6OF2tius3V3)
+The project has multiple source files since I have been following the [Sendtex "Neural Networks from Scratch" Series.](https://www.youtube.com/watch?v=Wo5dMEP_BbI&list=PLQVvvaa0QuDcjD5BAw2DxE6OF2tius3V3)
 
 Dependencies:  
 - gcc version: 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04)  
