@@ -19,8 +19,9 @@ Dependencies:
 - gcc version: 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04)  
 - CBLAS: C interface for Basic Linear Algebra Subprograms  
 
-To compile most of the programs in this repository, just use the following order, changing "program" with the name of the program you are trying to compile:  
-`gcc src/program.c -o obj/program -lopenblas -lm`
+To compile programs in this repository, use one of the following orders, changing "program" with the name of the program you are trying to compile:  
+`gcc src/program.c -o obj/program -lopenblas -lm`  
+`gcc src/program.c include/LayerDense.h -o obj/program -lopenblas -lm -I./include`
 
 
 ## Source files
