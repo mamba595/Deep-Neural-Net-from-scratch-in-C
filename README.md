@@ -17,12 +17,12 @@ Dependencies:
 To compile most of the programs in this repository, just use the following order, changing "program" with the name of the program you are trying to compile:
 gcc src/program.c -o obj/program -lopenblas -lm
 
-Part 1: firstNeuralNet.c
-Part 2: firstLayer.c
-Part 3: firstEfficientLayer.c and firstDotProduct.c
-Part 4: LayerWithBatches.c
-Part 5 to 8: LayerDense.c, LayerDense.h and mainLayerDense.c
-Part 9: LayerDense.c, LayerDense.h and mainOptimization.c
+Part 1: firstNeuralNet.c  
+Part 2: firstLayer.c  
+Part 3: firstEfficientLayer.c and firstDotProduct.c  
+Part 4: LayerWithBatches.c  
+Part 5 to 8: LayerDense.c, LayerDense.h and mainLayerDense.c  
+Part 9: LayerDense.c, LayerDense.h and mainOptimization.c  
 
 mainLayerDense runs a basic deep neural network with no goal whatsoever. mainOptimization applies optimization, as the name shows, in order to approximate a function I created only for the deep neural network to approximate.
 
