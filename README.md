@@ -15,7 +15,7 @@ The project has multiple source files since I have been following the [Sendtex "
    * Additional functions to make working with the LayerDense objects more efficient, such as copy, add and deleteLayer.
 
 ## Setup
-Dependencies:  
+Tools used:  
 - gcc version: 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04)  
 - CBLAS: C interface for Basic Linear Algebra Subprograms  
 
