@@ -1,5 +1,5 @@
 # Deep-Neural-Net-from-scratch-in-C
-Building a Deep Neural Network from scratch in C, only using high performance math libraries, such as CBLAS, math.h and time.h.
+Building a Deep Neural Network from scratch in C, using only high performance math libraries, such as CBLAS, math.h and time.h.
 
 The project follows the [Sendtex "Neural Networks from Scratch" Series](https://www.youtube.com/watch?v=Wo5dMEP_BbI&list=PLQVvvaa0QuDcjD5BAw2DxE6OF2tius3V3).
 
