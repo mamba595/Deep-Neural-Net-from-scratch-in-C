@@ -11,7 +11,7 @@ The project has multiple source files since I have been following the Sendtex "N
 https://www.youtube.com/watch?v=Wo5dMEP_BbI&list=PLQVvvaa0QuDcjD5BAw2DxE6OF2tius3V3
 
 Dependencies:  
-    - gcc version: 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04)  
+- gcc version: 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04)  
     - CBLAS: C interface for Basic Linear Algebra Subprograms  
 
 To compile most of the programs in this repository, just use the following order, changing "program" with the name of the program you are trying to compile:
